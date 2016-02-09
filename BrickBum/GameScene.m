@@ -258,12 +258,44 @@ NSString* UserName;
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString* responseString =[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
     NSLog(responseString);
-    [self gotoMenu];
+    
+    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter] &&
+       ![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook] &&
+       ![SLComposeViewController isAvailableForServiceType:SLServiceTypeTencentWeibo] &&
+       ![SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]
+       )
+    {
+        [self gotoMenu];
+    }
+    else
+    {
+        UIAlertView * alert =[[UIAlertView alloc ]
+                              initWithTitle:@"Congratulations"
+                              message:[NSString stringWithFormat:@"You completed %@ with the score: %d. Do you want share the screenshot and score to your friends?", GameName, score]
+                              delegate:self
+                              cancelButtonTitle: @"Nope"
+                              otherButtonTitles: nil];
+        alert.tag = 123;
+        
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+            [alert addButtonWithTitle:@"Twitter"];
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+            [alert addButtonWithTitle:@"Facebook"];
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTencentWeibo])
+            [alert addButtonWithTitle:@"TencentWeibo"];
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
+            [alert addButtonWithTitle:@"SinaWeibo"];
+        
+        [alert show];
+    }
 }
 
 #pragma mark - Create
 -(void)createGridLines
 {
+    if (_gridLines != nil)
+        [self removeChildrenInArray:_gridLines];
+    
     _gridLines = [[NSMutableArray alloc] init];
     
     SKShapeNode *line = [SKShapeNode node];
@@ -954,35 +986,7 @@ NSString* UserName;
     gameOver = YES;
     [self createBackgroundMusic2];
     
-    if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter] &&
-       ![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook] &&
-       ![SLComposeViewController isAvailableForServiceType:SLServiceTypeTencentWeibo] &&
-       ![SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]
-       )
-    {
-        [self SendHighScoreToServerAlert];
-    }
-    else
-    {
-        UIAlertView * alert =[[UIAlertView alloc ]
-                              initWithTitle:@"Congratulations"
-                              message:[NSString stringWithFormat:@"You completed %@ with the score: %d. Do you want share the screenshot and score to your friends?", GameName, score]
-                              delegate:self
-                              cancelButtonTitle: @"Nope"
-                              otherButtonTitles: nil];
-        alert.tag = 123;
-        
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-            [alert addButtonWithTitle:@"Twitter"];
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-            [alert addButtonWithTitle:@"Facebook"];
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTencentWeibo])
-            [alert addButtonWithTitle:@"TencentWeibo"];
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
-            [alert addButtonWithTitle:@"SinaWeibo"];
-        
-        [alert show];
-    }
+    [self SendHighScoreToServerAlert];
 }
 
 #pragma mark - events
@@ -1026,12 +1030,16 @@ NSString* UserName;
     else if (alertView.tag == 123)
     {
         if (buttonIndex == 0)  // 0 == the cancel button
-            [self SendHighScoreToServerAlert];
+        {
+            
+        }
         else
         {
             NSString* btnTitle = [alertView buttonTitleAtIndex:buttonIndex];
             [self postTo:btnTitle];
         }
+        
+        [self gotoMenu];
     }
     else if (alertView.tag == 124)
     {

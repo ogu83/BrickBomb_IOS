@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrickBum/GameScene.m"
-            timestampString = "476708513.259203"
+            timestampString = "476736287.345439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "461"
-            endingLineNumber = "461"
+            startingLineNumber = "493"
+            endingLineNumber = "493"
             landmarkName = "-setBrickPosition:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrickBum/GameScene.m"
-            timestampString = "476708513.259203"
+            timestampString = "476736287.345439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "463"
-            endingLineNumber = "463"
+            startingLineNumber = "495"
+            endingLineNumber = "495"
             landmarkName = "-setBrickPosition:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BrickBum/GameScene.m"
-            timestampString = "476705807.408228"
+            timestampString = "476714861.546875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "-SendHighScoreToServer"
             landmarkType = "5">
          </BreakpointContent>
