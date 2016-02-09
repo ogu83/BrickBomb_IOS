@@ -1,0 +1,27 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "b4c86669-cdde-b240-8665-79a095c818af++505",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "b4c86669-cdde-b240-8665-79a095c818af++505" : {
+      "DVTSourceControlWorkingCopyRepositoryBranchesLocationKey" : "branches",
+      "DVTSourceControlWorkingCopyRepositoryTagsLocationKey" : "tags",
+      "DVTSourceControlWorkingCopyRepositoryPrimaryBranchLocationKey" : "trunk"
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "b4c86669-cdde-b240-8665-79a095c818af++505" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0C59E0DD-3A2E-469C-80A3-E3FDB309CC56",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "b4c86669-cdde-b240-8665-79a095c818af++505" : "BrickBomb_IOS\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Brick.Bomb",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Brick.Bomb.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/titan830.startdedicated.com\/svn\/BrickBomb_IOS",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "b4c86669-cdde-b240-8665-79a095c818af++505"
+    }
+  ]
+}
