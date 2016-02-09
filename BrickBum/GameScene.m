@@ -50,6 +50,7 @@ bool isSoundOn;
 int level = 1;
 int nextLevelScore = 100;
 int levelPow = 10;
+NSString* UserName;
 
 #pragma mark - Functions
 -(UIImage *)screenShot
@@ -115,7 +116,7 @@ int levelPow = 10;
     [controller addURL:[NSURL URLWithString:WebSite]];
     UIImage* img = [self screenShot];
     [controller addImage:img];
-    [[self viewController] presentViewController:controller animated:YES completion:^{ [self SendHighScoreToServerAlert]; }];
+    [[self viewController] presentViewController:controller animated:YES completion:^{ }];
 }
 - (void)postToTwitter
 {
@@ -126,7 +127,7 @@ int levelPow = 10;
         [controller addURL:[NSURL URLWithString:WebSite]];
         UIImage* img = [self screenShot];
         [controller addImage:img];
-        [[self viewController] presentViewController:controller animated:YES completion:^{ [self SendHighScoreToServerAlert]; }];
+        [[self viewController] presentViewController:controller animated:YES completion:^{ }];
     }
 }
 - (void)postToFacebook
@@ -138,7 +139,7 @@ int levelPow = 10;
         [controller addURL:[NSURL URLWithString:WebSite]];
         UIImage* img = [self screenShot];
         [controller addImage:img];
-        [[self viewController] presentViewController:controller animated:YES completion:^{ [self SendHighScoreToServerAlert]; }];
+        [[self viewController] presentViewController:controller animated:YES completion:^{ }];
     }
     else
     {
@@ -205,6 +206,9 @@ int levelPow = 10;
 }
 - (void)startGame
 {
+    if (_bricks !=nil)
+        [self removeChildrenInArray:_bricks];
+    
     _bricks = [[NSMutableArray alloc] init];
     //[self createBrickCouple];
     [self startGameWithBricks];
@@ -216,7 +220,8 @@ int levelPow = 10;
     scoreLabel = nil;
     [self removeAllActions];
     [self removeAllChildren];
-    [self destroyGridLines];
+    //[self destroyGridLines];
+    [self createGridLines];
     [self createMenu];
 }
 
@@ -234,6 +239,25 @@ int levelPow = 10;
 -(void)SendHighScoreToServer
 {
     //TODO: Send It To Server
+    UIDevice *device = [UIDevice currentDevice];
+    NSString  *deviceId = [[device identifierForVendor]UUIDString];
+    
+    NSString *post = @"";
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/HighScore?appId=%@&deviceId=%@&name=%@&score=%d",ApiAddress,AppId,deviceId,UserName,score]]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    //NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSString* responseString =[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    NSLog(responseString);
     [self gotoMenu];
 }
 
@@ -316,6 +340,7 @@ int levelPow = 10;
     _btnStart.position = CGPointMake(CGRectGetMidX(self.frame),
                                      CGRectGetMidY(self.frame) + menuBtnH * 1.1 * 2);
     [_btnStart setSize:CGSizeMake(menuBtnW, menuBtnH)];
+    [_btnStart setZPosition:9];
     [self addChild:_btnStart];
     
     
@@ -323,6 +348,7 @@ int levelPow = 10;
     _btnHowToPlay.position = CGPointMake(CGRectGetMidX(self.frame),
                                      CGRectGetMidY(self.frame) + menuBtnH * 1.1);
     [_btnHowToPlay setSize:CGSizeMake(menuBtnW, menuBtnH)];
+    [_btnHowToPlay setZPosition:9];
     [self addChild:_btnHowToPlay];
     
     
@@ -330,6 +356,7 @@ int levelPow = 10;
     _btnHighScore.position = CGPointMake(CGRectGetMidX(self.frame),
                                          CGRectGetMidY(self.frame) + menuBtnH * 0);
     [_btnHighScore setSize:CGSizeMake(menuBtnW, menuBtnH)];
+    [_btnHighScore setZPosition:9];
     [self addChild:_btnHighScore];
     
     
@@ -337,6 +364,7 @@ int levelPow = 10;
     _btnRate.position = CGPointMake(CGRectGetMidX(self.frame),
                                          CGRectGetMidY(self.frame) + menuBtnH * -1.1);
     [_btnRate setSize:CGSizeMake(menuBtnW, menuBtnH)];
+    [_btnRate setZPosition:9];
     [self addChild:_btnRate];
     
     
@@ -344,23 +372,23 @@ int levelPow = 10;
     _btnExit.position = CGPointMake(CGRectGetMidX(self.frame),
                                     CGRectGetMidY(self.frame) + menuBtnH * -1.1 * 2);
     [_btnExit setSize:CGSizeMake(menuBtnW, menuBtnH)];
+    [_btnExit setZPosition:9];
     [self addChild:_btnExit];
     
-    float duration = 0.3;
-    [_btnStart runAction:[SKAction fadeInWithDuration:duration]];
-    [_btnHighScore runAction:[SKAction fadeInWithDuration:duration]];
-    [_btnExit runAction:[SKAction fadeInWithDuration:duration]];
+    //float duration = 0.3;
+    //[_btnStart runAction:[SKAction fadeInWithDuration:duration]];
+    //[_btnHighScore runAction:[SKAction fadeInWithDuration:duration]];
+    //[_btnExit runAction:[SKAction fadeInWithDuration:duration]];
     
     onMenu = YES;
 }
 - (void)removeMenu
 {
-    float duration = 0.3;
-    [_btnExit runAction:[SKAction fadeOutWithDuration:duration]];
-    [_btnHighScore runAction:[SKAction fadeOutWithDuration:duration]];
-    [_btnStart runAction:[SKAction fadeOutWithDuration:duration]];
-    [_btnHowToPlay runAction:[SKAction fadeOutWithDuration:duration]];
-    [_btnRate runAction:[SKAction fadeOutWithDuration:duration]];
+    [_btnStart removeFromParent];
+    [_btnHowToPlay removeFromParent];
+    [_btnHighScore removeFromParent];
+    [_btnRate removeFromParent];
+    [_btnExit removeFromParent];
     onMenu = NO;
 }
 
@@ -841,7 +869,8 @@ int levelPow = 10;
 -(void)levelUp
 {
     level++;
-    nextLevelScore = powl(levelPow, level + 1);
+    levelPow=2;
+    nextLevelScore *= levelPow;
     
     if ((float)levelIntervalInSeconds > 4.0/(float)posYCount)
         levelIntervalInSeconds -= 0.05;
@@ -960,9 +989,12 @@ int levelPow = 10;
 -(void)didMoveToView:(SKView *)view
 {
     /* Setup your scene here */
+    [self createGridLines];
     [self createMenu];
     [self createBackground];
     [self createBackgroundMusic2];
+    
+    _bricks = [[NSMutableArray alloc] init];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -1009,6 +1041,7 @@ int levelPow = 10;
         }
         else
         {
+            UserName = [alertView textFieldAtIndex:0].text;
             [self SendHighScoreToServer];
         }
     }
@@ -1079,15 +1112,16 @@ int levelPow = 10;
         float w = h*ratio;
         [_howToPlayScreen setSize:CGSizeMake(w,h)];
         [_howToPlayScreen setPosition:CGPointMake(frameW/2, frameH/2)];
-        [_howToPlayScreen setZPosition:2];
+        [_howToPlayScreen setZPosition:12];
         [self addChild:_howToPlayScreen];
         
         _howToPlayCloseButton = [SKSpriteNode spriteNodeWithImageNamed:@"GotoMenu"];
         _howToPlayCloseButton.name = @"HowToPlayClose";
-        w=h=frameH/16;
-        [_howToPlayCloseButton setSize:CGSizeMake(w, h)];
-        [_howToPlayCloseButton setPosition:CGPointMake(frameW-xMargin-w, frameH-yMargin-h)];
-        [_howToPlayCloseButton setZPosition:3];
+        float h1 = frameH/16;
+        float w1 = h1;
+        [_howToPlayCloseButton setSize:CGSizeMake(w1, h1)];
+        [_howToPlayCloseButton setPosition:CGPointMake(frameW/2+w/2-xMargin/2, frameH/2+h/2-yMargin/2)];
+        [_howToPlayCloseButton setZPosition:13];
         [self addChild:_howToPlayCloseButton];
         
         return;
@@ -1108,6 +1142,8 @@ int levelPow = 10;
     }
     if ([node.name isEqualToString:_btnHighScore.name])
     {
+        NSString* link=[NSString stringWithFormat:@"%@/HighScore",WebSite];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: link]];
         return;
     }
     
@@ -1208,6 +1244,14 @@ int levelPow = 10;
             [self explodeBircks];
             [self moveBricksDown];
             //[self calculateScore];
+            updatedTime=currentTime;
+        }
+    }
+    else if (onMenu)
+    {
+        if (updatedTime == 0 || currentTime - updatedTime > 0.25)
+        {
+            [self moveBricksDown];
             updatedTime=currentTime;
         }
     }
