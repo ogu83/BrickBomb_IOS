@@ -28,6 +28,7 @@
 		AD5095111C650E2800FE01E0 /* Bum3.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD50950E1C650E2800FE01E0 /* Bum3.wav */; };
 		AD5095121C650E2800FE01E0 /* Bum4.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD50950F1C650E2800FE01E0 /* Bum4.wav */; };
 		AD5095151C65DC4D00FE01E0 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5095141C65DC4D00FE01E0 /* Constants.m */; };
+		ADDD8A2F1C6A15CE009DF03E /* LaunchImageIphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDD8A2E1C6A15CE009DF03E /* LaunchImageIphone5.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		AD50950F1C650E2800FE01E0 /* Bum4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Bum4.wav; sourceTree = "<group>"; };
 		AD5095131C65DC4D00FE01E0 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		AD5095141C65DC4D00FE01E0 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		ADDD8A2E1C6A15CE009DF03E /* LaunchImageIphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImageIphone5.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		AD07EEC61C61ED8300C41D9D /* BrickBum */ = {
 			isa = PBXGroup;
 			children = (
+				ADDD8A2E1C6A15CE009DF03E /* LaunchImageIphone5.png */,
 				AD5095161C65DCE600FE01E0 /* Helpers */,
 				AD5095011C64D8FD00FE01E0 /* Sounds */,
 				AD07EF0A1C622B4400C41D9D /* Sprites */,
@@ -319,6 +322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADDD8A2F1C6A15CE009DF03E /* LaunchImageIphone5.png in Resources */,
 				AD50950B1C64DD9800FE01E0 /* Music1.wav in Resources */,
 				AD07EED11C61ED8300C41D9D /* GameScene.sks in Resources */,
 				AD5095101C650E2800FE01E0 /* Bum2.wav in Resources */,
