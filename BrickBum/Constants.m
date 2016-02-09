@@ -12,5 +12,5 @@
 NSString *const WebSite                  = @"http://brickbomb.oogames.us";
 NSString *const GameName                 = @"BrickBomb";
 NSString *const AppId                    = @"1082150144";
-NSString *const ApiAddress               = @"http://192.168.1.20:43344/api";
+NSString *const ApiAddress               = @"http://192.168.1.20/BrickBombWeb/api";
 @end
