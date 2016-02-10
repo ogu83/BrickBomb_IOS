@@ -236,6 +236,28 @@ NSString* UserName;
     alertView.tag = 124;
     [alertView show];
 }
+- (void)postToAlert
+{
+    UIAlertView * alert =[[UIAlertView alloc ]
+                          initWithTitle:@"Congratulations"
+                          message:[NSString stringWithFormat:@"You completed %@ with the score: %d. Do you want share the screenshot and score to your friends?", GameName, score]
+                          delegate:self
+                          cancelButtonTitle: @"Nope"
+                          otherButtonTitles: nil];
+    alert.tag = 123;
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+        [alert addButtonWithTitle:@"Twitter"];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+        [alert addButtonWithTitle:@"Facebook"];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTencentWeibo])
+        [alert addButtonWithTitle:@"TencentWeibo"];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
+        [alert addButtonWithTitle:@"SinaWeibo"];
+    
+    [alert show];
+}
+
 -(void)SendHighScoreToServer
 {
     //TODO: Send It To Server
@@ -269,24 +291,7 @@ NSString* UserName;
     }
     else
     {
-        UIAlertView * alert =[[UIAlertView alloc ]
-                              initWithTitle:@"Congratulations"
-                              message:[NSString stringWithFormat:@"You completed %@ with the score: %d. Do you want share the screenshot and score to your friends?", GameName, score]
-                              delegate:self
-                              cancelButtonTitle: @"Nope"
-                              otherButtonTitles: nil];
-        alert.tag = 123;
-        
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-            [alert addButtonWithTitle:@"Twitter"];
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-            [alert addButtonWithTitle:@"Facebook"];
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTencentWeibo])
-            [alert addButtonWithTitle:@"TencentWeibo"];
-        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo])
-            [alert addButtonWithTitle:@"SinaWeibo"];
-        
-        [alert show];
+        [self postToAlert];
     }
 }
 
@@ -1045,7 +1050,7 @@ NSString* UserName;
     {
         if (buttonIndex == 0)  // 0 == the cancel button
         {
-            [self gotoMenu];
+            [self postToAlert];
         }
         else
         {
