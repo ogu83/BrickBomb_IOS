@@ -261,6 +261,7 @@ NSString* UserName;
 -(void)SendHighScoreToServer
 {
     //TODO: Send It To Server
+    UserName = [UserName stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     UIDevice *device = [UIDevice currentDevice];
     NSString  *deviceId = [[device identifierForVendor]UUIDString];
     
@@ -268,9 +269,15 @@ NSString* UserName;
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSString* url = [NSString stringWithFormat:@"%@/HighScore?appId=%@&deviceId=%@&name=%@&score=%d",ApiAddress,AppId,deviceId,UserName,score];
     
+    //NSString* eUrl = url;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/HighScore?appId=%@&deviceId=%@&name=%@&score=%d",ApiAddress,AppId,deviceId,UserName,score]]];
+    [request setURL:[NSURL URLWithString:url]];
+    
+    NSLog([NSString stringWithFormat:@"Request URL: %@", url]);
+    //NSLog([NSString stringWithFormat:@"Request EURL: %@", eUrl]);
+    
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -279,7 +286,7 @@ NSString* UserName;
     //NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString* responseString =[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    NSLog(responseString);
+    NSLog([NSString stringWithFormat:@"Response: %@",responseString]);
     
     if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter] &&
        ![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook] &&
@@ -1213,10 +1220,10 @@ NSString* UserName;
     {
         for (Brick* b in _bricks)
         {
-            float left = [self CGPosXFromPosX:[[b Pos] Left].X];
-            float right = [self CGPosXFromPosX:[[b Pos] Right].X];
-            float top = [self CGPosYFromPosY:[[b Pos] Top].Y];
-            float bottom = [self CGPosYFromPosY:[[b Pos] Bottom].Y];
+            float left = [self CGPosXFromPosX:[[[b Pos] Left] Left].X];
+            float right = [self CGPosXFromPosX:[[[b Pos] Right] Right].X];
+            float top = [self CGPosYFromPosY:[[[b Pos] Top] Top].Y];
+            float bottom = [self CGPosYFromPosY:[[[b Pos] Bottom] Bottom].Y];
             
             if (location.x > left && location.x < right &&
                 location.y > bottom && location.y < top)
