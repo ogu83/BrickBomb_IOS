@@ -21,11 +21,8 @@
 		AD07EF061C61F72F00C41D9D /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD07EF051C61F72F00C41D9D /* MenuButton.m */; };
 		AD07EF091C622B3400C41D9D /* BrickCouple.m in Sources */ = {isa = PBXBuildFile; fileRef = AD07EF081C622B3400C41D9D /* BrickCouple.m */; };
 		AD07EF0D1C623C5A00C41D9D /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = AD07EF0C1C623C5A00C41D9D /* Position.m */; };
-		AD50950A1C64DD9800FE01E0 /* Bum.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD5095071C64DD9800FE01E0 /* Bum.wav */; };
 		AD50950B1C64DD9800FE01E0 /* Music1.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD5095081C64DD9800FE01E0 /* Music1.wav */; };
 		AD50950C1C64DD9800FE01E0 /* Music2.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD5095091C64DD9800FE01E0 /* Music2.wav */; };
-		AD5095101C650E2800FE01E0 /* Bum2.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD50950D1C650E2800FE01E0 /* Bum2.wav */; };
-		AD5095111C650E2800FE01E0 /* Bum3.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD50950E1C650E2800FE01E0 /* Bum3.wav */; };
 		AD5095121C650E2800FE01E0 /* Bum4.wav in Resources */ = {isa = PBXBuildFile; fileRef = AD50950F1C650E2800FE01E0 /* Bum4.wav */; };
 		AD5095151C65DC4D00FE01E0 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5095141C65DC4D00FE01E0 /* Constants.m */; };
 		ADDD8A2F1C6A15CE009DF03E /* LaunchImageIphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDD8A2E1C6A15CE009DF03E /* LaunchImageIphone5.png */; };
@@ -76,11 +73,8 @@
 		AD07EF081C622B3400C41D9D /* BrickCouple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickCouple.m; sourceTree = "<group>"; };
 		AD07EF0B1C623C5A00C41D9D /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		AD07EF0C1C623C5A00C41D9D /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
-		AD5095071C64DD9800FE01E0 /* Bum.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Bum.wav; sourceTree = "<group>"; };
 		AD5095081C64DD9800FE01E0 /* Music1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Music1.wav; sourceTree = "<group>"; };
 		AD5095091C64DD9800FE01E0 /* Music2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Music2.wav; sourceTree = "<group>"; };
-		AD50950D1C650E2800FE01E0 /* Bum2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Bum2.wav; sourceTree = "<group>"; };
-		AD50950E1C650E2800FE01E0 /* Bum3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Bum3.wav; sourceTree = "<group>"; };
 		AD50950F1C650E2800FE01E0 /* Bum4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Bum4.wav; sourceTree = "<group>"; };
 		AD5095131C65DC4D00FE01E0 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		AD5095141C65DC4D00FE01E0 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -199,10 +193,7 @@
 		AD5095011C64D8FD00FE01E0 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				AD50950D1C650E2800FE01E0 /* Bum2.wav */,
-				AD50950E1C650E2800FE01E0 /* Bum3.wav */,
 				AD50950F1C650E2800FE01E0 /* Bum4.wav */,
-				AD5095071C64DD9800FE01E0 /* Bum.wav */,
 				AD5095081C64DD9800FE01E0 /* Music1.wav */,
 				AD5095091C64DD9800FE01E0 /* Music2.wav */,
 			);
@@ -325,12 +316,9 @@
 				ADDD8A2F1C6A15CE009DF03E /* LaunchImageIphone5.png in Resources */,
 				AD50950B1C64DD9800FE01E0 /* Music1.wav in Resources */,
 				AD07EED11C61ED8300C41D9D /* GameScene.sks in Resources */,
-				AD5095101C650E2800FE01E0 /* Bum2.wav in Resources */,
 				AD50950C1C64DD9800FE01E0 /* Music2.wav in Resources */,
-				AD5095111C650E2800FE01E0 /* Bum3.wav in Resources */,
 				AD07EEDC1C61ED8300C41D9D /* LaunchScreen.storyboard in Resources */,
 				AD5095121C650E2800FE01E0 /* Bum4.wav in Resources */,
-				AD50950A1C64DD9800FE01E0 /* Bum.wav in Resources */,
 				AD07EED91C61ED8300C41D9D /* Assets.xcassets in Resources */,
 				AD07EED71C61ED8300C41D9D /* Main.storyboard in Resources */,
 			);
