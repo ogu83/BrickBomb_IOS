@@ -221,6 +221,7 @@ NSString* UserName;
     [self removeAllActions];
     [self removeAllChildren];
     //[self destroyGridLines];
+    [self createBackground];
     [self createGridLines];
     [self createMenu];
 }
@@ -335,20 +336,19 @@ NSString* UserName;
 
 - (void)createBackground
 {
-    [self setBackgroundColor:[SKColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1]];
+    [self setBackgroundColor:[SKColor colorWithRed:0.9 green:0.9 blue:1 alpha:1]];
     
-    /*
     float frameW = CGRectGetWidth(self.frame);
     float frameH = CGRectGetHeight(self.frame);
     
-    UIImage* image = [UIImage imageNamed:@"Background1"];
-    UIImage* cropped = [self cropBackgroundImage:image];
+    UIImage* image = [UIImage imageNamed:@"InvertedLightClouds"];
+    //UIImage* cropped = [self cropBackgroundImage:image];
     
-    SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:cropped]];
+    SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:image]];
+    sprite.size = self.frame.size;
     sprite.position = CGPointMake(frameW / 2, frameH / 2);
     sprite.zPosition = -1;
     [self addChild:sprite];
-     */
 }
 
 -(void)createBackgroundMusic1
@@ -900,7 +900,7 @@ NSString* UserName;
         float frameH = CGRectGetHeight(self.frame);
         scoreLabel =  [SKLabelNode labelNodeWithFontNamed:@"Chalkboard SE"];
         scoreLabel.fontSize = (int)(frameH / 16);
-        scoreLabel.fontColor = [SKColor whiteColor];
+        scoreLabel.fontColor = [SKColor purpleColor];
         scoreLabel.position = CGPointMake(frameW / 2, frameH - yMargin / 2 - frameH / 32);
         [self addChild:scoreLabel];
     }
