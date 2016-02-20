@@ -773,6 +773,7 @@ NSString* UserName;
                 //NSLog(@"Left Move");
             }
             brickMoved = YES;
+            firstTouchX = positionInScene.x;
         }
     }
 }
